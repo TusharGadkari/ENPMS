@@ -1,15 +1,19 @@
-function  [p] =  app_NAME_01()
+function  [INI] =  app_NAME_01()
 clc
 clear
 close all
 
-ENPMS_PATHDIR = which('ENPMS\ENPMS_README.txt','-all');
-ENPMS_PATHDIR = char(ENPMS_PATHDIR);
-INI.ENPMS_PATHDIR = fileparts(ENPMS_PATHDIR);
 
 PATHDIR = which('ENPMS\MAIN\app_NAME_01.m','-all');
 PATHDIR = char(PATHDIR);
 INI.PATHDIR = fileparts(PATHDIR);
+
+cd ..
+ENPMS_PATHDIR = which('ENPMS\ENPMS_README.txt','-all');
+ENPMS_PATHDIR = char(ENPMS_PATHDIR);
+INI.ENPMS_PATHDIR = fileparts(ENPMS_PATHDIR);
+
+cd(INI.PATHDIR) 
 
 % CHOOSE TAG FOR THIS POSTPROC RUN
 INI.ANALYSIS_TAG = 'PHASE3A_ALL';
@@ -27,7 +31,7 @@ A1 = 0 ;A2 = 0; A2a = 0; A3 = 0; A3a = 1; A3exp = 1; A4 = 0; A5 = 0; A6=0; A7=0;
     %     INI.PATHDIR     = '~\GitHub\ENPMS\TEST_CASES\';
     % end
 path(path,[INI.ENPMS_PATHDIR '\LIB']);
-path(path,[INI.ENPMS_PATHDIR '\LIB_COMMON']);
+path(path,[INI.ENPMS_PATHDIR '\LIB\LIB_COMMON']);
 %ResultDirHome = ['Z:/ENP/MODELS/Result/'];
 ResultDirHome = [INI.ENPMS_PATHDIR '\TEST_CASES\'];
 
@@ -52,6 +56,8 @@ i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'ALT000_BL', 'BL'};
 INI.SELECTED_STATION_LIST = 'selected_station_list-MDR.txt'; 
 % The observed station data (gets loaded automatically?)
 INI.FILE_OBSERVED = 'DATA_OBSERVED20130519.MATLAB'; %  all selected stations
+
+%datadir = '/MATLAB/postproc/data/'
 %INI.STATION_DATA   = [datadir '/monptsV14-7.xlsx'];
 INI.STATION_DATA   = 'monptsV14-11.xlsx';
 % NOT SURE HOW THESE ARE IMPLEMENTED YET:
