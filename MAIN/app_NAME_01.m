@@ -10,8 +10,8 @@ INI.PATHDIR = fileparts(PATHDIR);
 
 cd ..
 ENPMS_PATHDIR = which('ENPMS\ENPMS_README.txt','-all');
-ENPMS_PATHDIR = char(ENPMS_PATHDIR);
-INI.ENPMS_PATHDIR = fileparts(ENPMS_PATHDIR);
+ENPMS_PATHDIR = char(ENPMS_PATHDIR)
+INI.ENPMS_PATHDIR = fileparts(ENPMS_PATHDIR)
 
 cd(INI.PATHDIR) 
 
@@ -24,16 +24,16 @@ INI.ANALYZE_DATE_F = [2005 12 31 0 0 0];
 A1 = 0 ;A2 = 0; A2a = 0; A3 = 0; A3a = 1; A3exp = 1; A4 = 0; A5 = 0; A6=0; A7=0;
 %A1=Load TS, A2=TS stat, A2a=Flows, A3=FIG TS, A3a=BOX PLOT, A4=PE FIG, A5=LATEX
 % SET MODELS DIRECTORY 
-    %address = java.net.InetAddress.getLocalHost();
-    % if (regexp(char(address), 'ENP-PC'))
-    %     INI.PATHDIR     = 'C:\Users\tgadk001\Documents\GitHub\ENPMS\MAIN\TEST_CASES\';
-    % else
-    %     INI.PATHDIR     = '~\GitHub\ENPMS\TEST_CASES\';
-    % end
+    address = java.net.InetAddress.getLocalHost();
+    if (regexp(char(address), 'bme-3315-9368/131.94.116.23'))
+        INI.PATHDIR     = 'C:\Users\tgadk001\Documents\GitHub\ENPMS\MAIN\TEST_CASES';
+    else
+        INI.PATHDIR     = '~\GitHub\ENPMS\MAIN\TEST_CASES';
+    end
 path(path,[INI.ENPMS_PATHDIR '\LIB']);
 path(path,[INI.ENPMS_PATHDIR '\LIB\LIB_COMMON']);
 %ResultDirHome = ['Z:/ENP/MODELS/Result/'];
-ResultDirHome = [INI.ENPMS_PATHDIR '\TEST_CASES\'];
+ResultDirHome = [INI.PATHDIR '\TEST_CASES'];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CHOOSE SIMULATIONS TO BE ANALYZED 

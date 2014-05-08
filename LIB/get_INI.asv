@@ -16,11 +16,11 @@ INI.MATDIR =  [INI.PATHDIR '/MATLAB/'];
 INI.SCRIPTDIR   = [INI.MATDIR 'postproc/'];
 INI.DATADIR = [INI.SCRIPTDIR 'data/'];
 
-path(path,[INI.MATDIR 'scripts/common']);
+path(path,[INI.MATDIR '/scripts/common']);
 path(path,[INI.MATDIR 'postproc/LIB']);
 path(path,INI.SCRIPTDIR);
-path(path,[INI.SCRIPTDIR,'/util']);
-path(path,[INI.SCRIPTDIR,'/latex']);
+path(path,[INI.SCRIPTDIR,'util']);
+path(path,[INI.SCRIPTDIR,'latex']);
 
 % INI.INCLUDE_OBSERVED, 
 % INI.COMPUTE_SENSITIVITES, 
@@ -50,8 +50,8 @@ INI.CELL_DEF_FILE_NAME_3DSZ  = {'cells2load-3DSZ'};
 % INI.ANALYSIS_DIR     = [INI.PATHDIR 'REPORTS/DATAPOST/output']; % analysis directory
 CURRENT_DIR = eval('pwd');
 [PATH,NAME,EXT] = fileparts(CURRENT_DIR);
-INI.ANALYSIS_DIR = [PATH '/' NAME];
-fprintf('Current directory, all analysis will be stored in: %s\n',INI.ANALYSIS_DIR);
+INI.ANALYSIS_DIR = [PATH '\' NAME];
+fprintf('Current directory, all analysis will be stored in: %s\n\n',INI.ANALYSIS_DIR);
 INI.ANALYSIS_DIR_TAG = [INI.ANALYSIS_DIR '/' INI.ANALYSIS_TAG];  % postproc directory for postproc run (no edits needed here)
 INI.DATA_DIR         = [INI.ANALYSIS_DIR_TAG '/data'];  % data dir in output for extracted matlab files
 INI.FIGURES_DIR      = [INI.ANALYSIS_DIR_TAG '/figures'];  % figures dir in output
@@ -78,6 +78,9 @@ if ~exist(INI.FIGURES_DIR_MAPS,'file'), mkdir(INI.FIGURES_DIR_MAPS), end
 % Set up LaTeX directory and supporting files
 if ~exist(INI.LATEX_DIR,'file'),        mkdir(INI.LATEX_DIR);end;
 
+fprintf('DIRECTORIES: ?\n');
+fprintf('INI.SCRIPTDIR is %s\n',INI.SCRIPTDIR);
+fprintf('INI.LATEX_DIR is %s\n',INI.LATEX_DIR);
 copyfile([INI.SCRIPTDIR '/latex/headV1.sty'],INI.LATEX_DIR );
 copyfile([INI.SCRIPTDIR '/latex/tail.sty'], INI.LATEX_DIR );
 copyfile([INI.SCRIPTDIR '/latex/blank.jpg'],INI.FIGURES_DIR );
