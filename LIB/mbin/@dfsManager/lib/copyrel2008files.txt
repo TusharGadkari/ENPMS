@@ -1,0 +1,25 @@
+copy \\rel2008\f\latest\bin\AMS2004.DLL           .
+copy \\rel2008\f\latest\bin\DATAMANAGER.DLL       .
+copy \\rel2008\f\latest\bin\DHIFL.DLL             .
+copy \\rel2008\f\latest\bin\EUM.DLL               .
+copy \\rel2008\f\latest\bin\MZCART.DLL            .
+copy \\rel2008\f\latest\bin\MZCHART.DLL           .
+copy \\rel2008\f\latest\bin\MZDFSSELECTION.DLL    .
+copy \\rel2008\f\latest\bin\MZENCRYPT.DLL         .
+copy \\rel2008\f\latest\bin\MZFC.DLL              .
+copy \\rel2008\f\latest\bin\MZLANGUAGE.DLL        .
+copy \\rel2008\f\latest\bin\MZSHPSELECTION.DLL    .
+copy \\rel2008\f\latest\bin\OG1100DHI2008AS.DLL   .
+copy \\rel2008\f\latest\bin\OT1000DHI2008AS.DLL   .
+copy \\rel2008\f\latest\bin\PFS2004.DLL           .
+copy \\rel2008\f\latest\bin\RWUXTHEMES80.DLL      .
+copy \\rel2008\f\latest\bin\SFL400DHI2008AS.DLL   .
+copy \\rel2008\f\latest\bin\UFS.DLL               .
+copy \\rel2008\f\latest\bin\VC8-RE200L.DLL        .
+copy \\rel2008\f\latest\bin\XMLLITE.DLL           .
+
+copy \\rel2008\f\latest\bin\EUM.xml               .
+copy \\rel2008\f\latest\bin\ellipsoid.pfs         .
+copy \\rel2008\f\latest\bin\map_projection.pfs    .
+copy \\rel2008\f\latest\bin\state_plane_nad27.pfs .
+copy \\rel2008\f\latest\bin\state_plane_nad83.pfs .
