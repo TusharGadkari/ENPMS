@@ -1,7 +1,4 @@
 function  [INI] =  app_NAME_01()
-clc
-clear
-close all
 
 PATHDIR = which('ENPMS\MAIN\app_NAME_01.m','-all');
 PATHDIR = char(PATHDIR);
