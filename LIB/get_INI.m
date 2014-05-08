@@ -81,15 +81,15 @@ if ~exist(INI.LATEX_DIR,'file'),        mkdir(INI.LATEX_DIR);end;
 fprintf('DIRECTORIES: ?\n');
 fprintf('INI.SCRIPTDIR is %s\n',INI.SCRIPTDIR);
 fprintf('INI.LATEX_DIR is %s\n',INI.LATEX_DIR);
-copyfile([INI.SCRIPTDIR '/latex/headV1.sty'],INI.LATEX_DIR );
-copyfile([INI.SCRIPTDIR '/latex/tail.sty'], INI.LATEX_DIR );
-copyfile([INI.SCRIPTDIR '/latex/blank.jpg'],INI.FIGURES_DIR );
-copyfile([INI.SCRIPTDIR '/latex/blank.bb'], INI.FIGURES_DIR );
-copyfile([INI.SCRIPTDIR '/latex/blank.png'],INI.FIGURES_DIR );
-copyfile([INI.SCRIPTDIR '/latex/figs-station_groups/APrimaryStationGroup.png'],INI.FIGURES_DIR_MAPS );
-copyfile([INI.SCRIPTDIR '/latex/figs-station_groups/BSecondaryStationGroup.png'],INI.FIGURES_DIR_MAPS );
-copyfile([INI.SCRIPTDIR '/latex/figs-station_groups/CBoundaryStationGroup.png'],INI.FIGURES_DIR_MAPS );
-copyfile([INI.SCRIPTDIR '/latex/figs-station_groups/DCanalNetworkStationGroup.png'],INI.FIGURES_DIR_MAPS );
+% copyfile([INI.SCRIPTDIR '/latex/headV1.sty'],INI.LATEX_DIR );
+% copyfile([INI.SCRIPTDIR '/latex/tail.sty'], INI.LATEX_DIR );
+% copyfile([INI.SCRIPTDIR '/latex/blank.jpg'],INI.FIGURES_DIR );
+% copyfile([INI.SCRIPTDIR '/latex/blank.bb'], INI.FIGURES_DIR );
+% copyfile([INI.SCRIPTDIR '/latex/blank.png'],INI.FIGURES_DIR );
+% copyfile([INI.SCRIPTDIR '/latex/figs-station_groups/APrimaryStationGroup.png'],INI.FIGURES_DIR_MAPS );
+% copyfile([INI.SCRIPTDIR '/latex/figs-station_groups/BSecondaryStationGroup.png'],INI.FIGURES_DIR_MAPS );
+% copyfile([INI.SCRIPTDIR '/latex/figs-station_groups/CBoundaryStationGroup.png'],INI.FIGURES_DIR_MAPS );
+% copyfile([INI.SCRIPTDIR '/latex/figs-station_groups/DCanalNetworkStationGroup.png'],INI.FIGURES_DIR_MAPS );
 
 INI.SELECTED_STATION_LIST = [INI.ANALYSIS_DIR '/' INI.SELECTED_STATION_LIST];
 INI.FILE_OBSERVED = [INI.ANALYSIS_DIR '/' INI.FILE_OBSERVED]; %  all selected stations
@@ -117,7 +117,7 @@ INI.PostProcTime_vector   = datevec(linspace(INI.PostProcStartDay_int,INI.PostPr
 infile = INI.SELECTED_STATION_LIST;
 if (exist(char(infile))~=2)
     %infile = SELECTED_STATION_LIST; 
-    infile = [INI.DATADIR 'selected_station_listALL.txt']
+    infile = [INI.DATADIR 'selected_station_list-MDR.txt']%listALL
     fprintf(' --> missing SELECTED_STATION_LIST\n')
     fprintf(' --> will use the general list in %s\n', infile)
 end

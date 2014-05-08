@@ -68,7 +68,7 @@ if ~exist(figdir,'file'),      mkdir(figdir), end  %Create a figures dir in outp
 % % page3=1;
     % GIS file
 printgis = [rundir 'statgis.asc'];
-fidgis=fopen(char(printgis),'w');
+fidgis = fopen(char(printgis),'w');
     % The matlab file and selected station list
 DATAMATLABFILE = [rundir run '_TIMESERIES_DATA.MATLAB'];
 DATA = load('-mat', DATAMATLABFILE);

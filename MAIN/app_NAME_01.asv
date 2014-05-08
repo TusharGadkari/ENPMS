@@ -1,8 +1,7 @@
-function  [] =  app_NAME_01()
+%function  [INI] =  app_NAME_01()
 clc
 clear
 close all
-
 
 PATHDIR = which('ENPMS\MAIN\app_NAME_01.m','-all');
 PATHDIR = char(PATHDIR);
@@ -10,8 +9,8 @@ INI.PATHDIR = fileparts(PATHDIR);
 
 cd ..
 ENPMS_PATHDIR = which('ENPMS\ENPMS_README.txt','-all');
-ENPMS_PATHDIR = char(ENPMS_PATHDIR);
-INI.ENPMS_PATHDIR = fileparts(ENPMS_PATHDIR);
+ENPMS_PATHDIR = char(ENPMS_PATHDIR)
+INI.ENPMS_PATHDIR = fileparts(ENPMS_PATHDIR)
 
 cd(INI.PATHDIR) 
 
@@ -24,21 +23,21 @@ INI.ANALYZE_DATE_F = [2005 12 31 0 0 0];
 A1 = 0 ;A2 = 0; A2a = 0; A3 = 0; A3a = 1; A3exp = 1; A4 = 0; A5 = 0; A6=0; A7=0;
 %A1=Load TS, A2=TS stat, A2a=Flows, A3=FIG TS, A3a=BOX PLOT, A4=PE FIG, A5=LATEX
 % SET MODELS DIRECTORY 
-    %address = java.net.InetAddress.getLocalHost();
-    % if (regexp(char(address), 'ENP-PC'))
-    %     INI.PATHDIR     = 'C:\Users\tgadk001\Documents\GitHub\ENPMS\MAIN\TEST_CASES\';
-    % else
-    %     INI.PATHDIR     = '~\GitHub\ENPMS\TEST_CASES\';
-    % end
+    address = java.net.InetAddress.getLocalHost();
+    if (regexp(char(address), 'bme-3315-9368/131.94.116.23'))
+        INI.PATHDIR     = 'C:\Users\tgadk001\Documents\GitHub\ENPMS\MAIN\TEST_CASES';
+    else
+        INI.PATHDIR     = '~\GitHub\ENPMS\MAIN\TEST_CASES';
+    end
 path(path,[INI.ENPMS_PATHDIR '\LIB']);
 path(path,[INI.ENPMS_PATHDIR '\LIB\LIB_COMMON']);
 %ResultDirHome = ['Z:/ENP/MODELS/Result/'];
-ResultDirHome = [INI.ENPMS_PATHDIR '\TEST_CASES\'];
+ResultDirHome = [INI.PATHDIR '\TEST_CASES'];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CHOOSE SIMULATIONS TO BE ANALYZED 
 % 1st cell: Results Directory, 2nd cell: simulation run, 3rd cell: legend entry
-i = 0; % initialize simulation count
+i = 0; % initialize simulation countINI
 % i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'V8ND08b', 'V8ND08b'};
 % i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'V8ND020', 'V8ND020'};
 i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'ALT000_BL', 'BL'};
@@ -57,14 +56,14 @@ INI.SELECTED_STATION_LIST = 'selected_station_list-MDR.txt';
 % The observed station data (gets loaded automatically?)
 INI.FILE_OBSERVED = 'DATA_OBSERVED20130519.MATLAB'; %  all selected stations
 
-datadir = '/MATLAB/postproc/data/'
-INI.STATION_DATA   = [datadir '/monptsV14-7.xlsx'];
-%INI.STATION_DATA   = 'monptsV14-11.xlsx';
+%datadir = '/MATLAB/postproc/data/'
+%INI.STATION_DATA   = [datadir '/monptsV14-7.xlsx'];
+INI.STATION_DATA   = 'monptsV14-11.xlsx';
 % NOT SURE HOW THESE ARE IMPLEMENTED YET:
-INI.INCLUDE_OBSERVED      = 'YES'; %Include observed in the output figs and tables. Check if this switch works
-INI.COMPUTE_SENSITIVITES  = 'YES'; %Compute statistics and generate tables in Latex? Check if this switch works
-INI.MAKE_STATISTICS_TABLE = 'NO'; %Make the statistics tables in Latex
-INI.MAKE_EXCEEDANCE_PLOTS = 'YES'; %Generate exceedance curve plots? Also generates the exceedance table.
+INI.INCLUDE_OBSERVED      = 'YES'; % Include observed in the output figs and tables. Check if this switch works
+INI.COMPUTE_SENSITIVITES  = 'YES'; % Compute statistics and generate tables in Latex? Check if this switch works
+INI.MAKE_STATISTICS_TABLE = 'NO';  % Make the statistics tables in LaTeX
+INI.MAKE_EXCEEDANCE_PLOTS = 'YES'; % Generate exceedance curve plots? Also generates the exceedance table.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CHOOSE WHICH MODEL/OBS OUTPUT FILE TYPES TO EXTRACT DATA FOR (A1 script only)
 % 1=yes, 0=no
@@ -75,20 +74,20 @@ INI.LOAD_OL       = 0;  % Overland dfs2 file (loads cells defined in xls spreads
 INI.LOAD_3DSZ     = 0;  % Saturated zone dfs3 file (loads cells defined in xls spreadsheet)
 INI.LOAD_3DSZQ    = 0;  % Saturated zone dfs3 flow file (loads cells defined in xls spreadsheet)
 
-%%%%%%%%%%%%%  INITIALILIZE STRUCTURE INI %%%%%%%%%%%%%%%%%%%
-INI = get_INI(INI);
-%%%%%%%%%%%%%  RUN SCRIPTS %%%%%%%%%%%%%%%%%%%
-if A1 ; A1_load_computed_timeseries(INI); end
-if A2 ; A2_generate_timeseries_stat(INI); end
-if A2a ; A2a_cumulative_flows(INI); end
-if A3 ; A3_create_figures_timeseries(INI); end
-if A3a ; A3a_boxmat(INI); end
-if A3exp ; A3a_boxmatEXP(INI); end
-if A4 ; A4_create_figures_exceedance(INI); end
-if A5 ; A5_create_summary_stat(INI); end
-if A6; A6_GW_MAP_COMPARE(INI); end
-if A7; A7_MDR_SEEPAGE(INI); end
-%%%%%%%%%%%%%  END RUN SCRIPTS %%%%%%%%%%%%%%%%%%%
-fclose('all');
-end
+% %%%%%%%%%%%%%  INITIALILIZE STRUCTURE INI %%%%%%%%%%%%%%%%%%%
+% INI = get_INI(INI);
+% %%%%%%%%%%%%%  RUN SCRIPTS %%%%%%%%%%%%%%%%%%%
+% if A1 ; A1_load_computed_timeseries(INI); end
+% if A2 ; A2_generate_timeseries_stat(INI); end
+% if A2a ; A2a_cumulative_flows(INI); end
+% if A3 ; A3_create_figures_timeseries(INI); end
+% if A3a ; A3a_boxmat(INI); end
+% if A3exp ; A3a_boxmatEXP(INI); end
+% if A4 ; A4_create_figures_exceedance(INI); end
+% if A5 ; A5_create_summary_stat(INI); end
+% if A6; A6_GW_MAP_COMPARE(INI); end
+% if A7; A7_MDR_SEEPAGE(INI); end
+% %%%%%%%%%%%%%  END RUN SCRIPTS %%%%%%%%%%%%%%%%%%%
+% fclose('all');
+%end
 

@@ -3,7 +3,6 @@ clc
 clear
 close all
 
-
 PATHDIR = which('ENPMS\MAIN\app_NAME_01.m','-all');
 PATHDIR = char(PATHDIR);
 INI.PATHDIR = fileparts(PATHDIR);
@@ -38,7 +37,7 @@ ResultDirHome = [INI.PATHDIR '\TEST_CASES'];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CHOOSE SIMULATIONS TO BE ANALYZED 
 % 1st cell: Results Directory, 2nd cell: simulation run, 3rd cell: legend entry
-i = 0; % initialize simulation count
+i = 0; % initialize simulation countINI
 % i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'V8ND08b', 'V8ND08b'};
 % i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'V8ND020', 'V8ND020'};
 i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'ALT000_BL', 'BL'};
@@ -61,10 +60,10 @@ INI.FILE_OBSERVED = 'DATA_OBSERVED20130519.MATLAB'; %  all selected stations
 %INI.STATION_DATA   = [datadir '/monptsV14-7.xlsx'];
 INI.STATION_DATA   = 'monptsV14-11.xlsx';
 % NOT SURE HOW THESE ARE IMPLEMENTED YET:
-INI.INCLUDE_OBSERVED      = 'YES'; %Include observed in the output figs and tables. Check if this switch works
-INI.COMPUTE_SENSITIVITES  = 'YES'; %Compute statistics and generate tables in Latex? Check if this switch works
-INI.MAKE_STATISTICS_TABLE = 'NO'; %Make the statistics tables in Latex
-INI.MAKE_EXCEEDANCE_PLOTS = 'YES'; %Generate exceedance curve plots? Also generates the exceedance table.
+INI.INCLUDE_OBSERVED      = 'YES'; % Include observed in the output figs and tables. Check if this switch works
+INI.COMPUTE_SENSITIVITES  = 'YES'; % Compute statistics and generate tables in Latex? Check if this switch works
+INI.MAKE_STATISTICS_TABLE = 'NO';  % Make the statistics tables in LaTeX
+INI.MAKE_EXCEEDANCE_PLOTS = 'YES'; % Generate exceedance curve plots? Also generates the exceedance table.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CHOOSE WHICH MODEL/OBS OUTPUT FILE TYPES TO EXTRACT DATA FOR (A1 script only)
 % 1=yes, 0=no
