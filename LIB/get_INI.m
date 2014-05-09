@@ -12,15 +12,15 @@ for i = 1:length(INI.MODEL_SIMULATION_SET)
     fprintf('SIMULATION: %s LEGEND: %s\n', B, C);
 end
 
-INI.MATDIR =  [INI.PATHDIR '/MATLAB/'];
-INI.SCRIPTDIR   = [INI.MATDIR 'postproc/'];
-INI.DATADIR = [INI.SCRIPTDIR 'data/'];
+INI.MATDIR =  [INI.PATHDIR 'LIB/'];
+INI.SCRIPTDIR   = [INI.PATHDIR 'DATA_LATEX/'];
+INI.DATADIR = [INI.PATHDIR 'DATA_OBSERVATIONS/'];
 
-path(path,[INI.MATDIR '/scripts/common']);
-path(path,[INI.MATDIR 'postproc/LIB']);
-path(path,INI.SCRIPTDIR);
-path(path,[INI.SCRIPTDIR,'util']);
-path(path,[INI.SCRIPTDIR,'latex']);
+path(path,[INI.MATDIR 'LIB_COMMON/']);
+% path(path,[INI.MATDIR 'postproc/LIB']);
+% path(path,INI.SCRIPTDIR);
+% path(path,[INI.SCRIPTDIR,'util']);
+% path(path,[INI.SCRIPTDIR,'latex']);
 
 % INI.INCLUDE_OBSERVED, 
 % INI.COMPUTE_SENSITIVITES, 
@@ -95,7 +95,7 @@ fprintf('==========================\n');
 % copyfile([INI.SCRIPTDIR '/latex/figs-station_groups/CBoundaryStationGroup.png'],INI.FIGURES_DIR_MAPS );
 % copyfile([INI.SCRIPTDIR '/latex/figs-station_groups/DCanalNetworkStationGroup.png'],INI.FIGURES_DIR_MAPS );
 
-INI.SELECTED_STATION_LIST = [INI.ANALYSIS_DIR '/' INI.SELECTED_STATION_LIST];
+% INI.SELECTED_STATION_LIST = [INI.ANALYSIS_DIR '/' INI.SELECTED_STATION_LIST];
 INI.FILE_OBSERVED = [INI.ANALYSIS_DIR '/' INI.FILE_OBSERVED]; %  all selected stations
 INI.STATION_DATA  = [INI.STATION_DATA INI.STATION_DATA];
 

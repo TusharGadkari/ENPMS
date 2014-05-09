@@ -28,7 +28,7 @@ function [MAP_ALL] = readXLSmonpts(MAKETEXTFILE,INI)
 
 % if (~exist('xlsfile','var')), disp('Input a xls file'), return; end;
 % xlfile2 = [matdir 'postproc/data/' xlsfile];
-xlfile2 =  [INI.DATADIR INI.STATION_DATA];
+xlfile2 =  INI.STATION_DATA;
 
 %%%%%%%%%%%%%%%%%%%%
     % Create the text file for 'detailed timeseries input'

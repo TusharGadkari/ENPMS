@@ -1,10 +1,10 @@
-function  [INI] =  app_NAME_01()
+function  [INI] =  ANALYSIS_SIMULATION_TEMPLATE()
 % do not modify;
 CURRENT_PATH =[fileparts(char(pwd())) '/'];
 
 %set by user determine where to store the results from analysis
-ANALYSIS_PATH = 'C:\Users\ENP\Documents\GitHub\TEST_ANALYSIS';
-ResultDirHome = ['C:\Users\ENP\Documents\GitHub\ENPMS\TEST_CASES\'];
+ANALYSIS_PATH = 'C:\Users\ENP\Documents\GitHub\ENPMS\DATA_TESTING\TESTING_ANALYSIS\';
+ResultDirHome = ['C:\Users\ENP\Documents\GitHub\ENPMS\DATA_TESTING\TESTING_SOURCE_SIMULATIONS\'];
 
 % CHOOSE TAG FOR THIS POSTPROC RUN
 INI.ANALYSIS_TAG = 'PHASE3A_ALL';
@@ -34,10 +34,10 @@ i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'ALT000_BL', 'BL'};
 %i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'V8050ND', 'ND'};
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-INI.SELECTED_STATION_LIST = [CURRENT_PATH 'DATA/' SELECTED_STATION_LIST]; 
+INI.SELECTED_STATION_LIST = [CURRENT_PATH 'DATA_CONFIGURATION/' SELECTED_STATION_LIST]; 
 % The observed station data (gets loaded automatically?)
-INI.FILE_OBSERVED = [CURRENT_PATH 'DATA/' FILE_OBSERVED]; %  all selected stations
-INI.STATION_DATA   = [CURRENT_PATH 'DATA/' STATION_DATA]; 
+INI.FILE_OBSERVED = [CURRENT_PATH 'DATA_OBSERVATIONS/' FILE_OBSERVED]; %  all selected stations
+INI.STATION_DATA   = [CURRENT_PATH 'DATA_OBSERVATIONS/' STATION_DATA]; 
 
 %user control 
 address = java.net.InetAddress.getLocalHost();
