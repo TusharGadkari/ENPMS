@@ -1,15 +1,10 @@
 function  [INI] =  app_NAME_01()
+% do not modify;
+CURRENT_PATH =[fileparts(char(pwd())) '/'];
 
-PATHDIR = which('ENPMS\MAIN\app_NAME_01.m','-all');
-PATHDIR = char(PATHDIR);
-INI.PATHDIR = fileparts(PATHDIR);
-
-% cd ..
-% ENPMS_PATHDIR = which('ENPMS\ENPMS_README.txt','-all');
-% ENPMS_PATHDIR = char(ENPMS_PATHDIR)
-% INI.ENPMS_PATHDIR = fileparts(ENPMS_PATHDIR)
-
-cd(INI.PATHDIR) 
+%set by user determine where to store the results from analysis
+ANALYSIS_PATH = 'C:\Users\ENP\Documents\GitHub\TEST_ANALYSIS';
+ResultDirHome = ['C:\Users\ENP\Documents\GitHub\ENPMS\TEST_CASES\'];
 
 % CHOOSE TAG FOR THIS POSTPROC RUN
 INI.ANALYSIS_TAG = 'PHASE3A_ALL';
@@ -17,23 +12,11 @@ INI.ANALYSIS_TAG = 'PHASE3A_ALL';
 INI.ANALYZE_DATE_I = [1996 1 1 0 0 0];
 INI.ANALYZE_DATE_F = [2005 12 31 0 0 0];
 % CHOOSE WHICH MODULES TO RUN  1=yes, 0=no
-A1 = 0 ;A2 = 0; A2a = 0; A3 = 0; A3a = 1; A3exp = 1; A4 = 0; A5 = 0; A6=0; A7=0;
-%A1=Load TS, A2=TS stat, A2a=Flows, A3=FIG TS, A3a=BOX PLOT, A4=PE FIG, A5=LATEX
-% SET MODELS DIRECTORY 
-    address = java.net.InetAddress.getLocalHost();
-    if (regexp(char(address), 'bme-3315-9368/131.94.116.23'))
-        INI.PATHDIR     = 'C:\Users\tgadk001\Documents\GitHub\ENPMS\MAIN\TEST_CASES';
-    elseif (regexp(char(address), 'arc-2162cub-1fa9/131.94.113.205'))
-        INI.PATHDIR     = 'C:\Users\tushar\Documents\GitHub\ENPMS\MAIN\TEST_CASES';
-    else
-        INI.PATHDIR     = '~\GitHub\ENPMS\MAIN\TEST_CASES';
-    end
-% path(path,[INI.ENPMS_PATHDIR '\LIB']);
-% path(path,[INI.ENPMS_PATHDIR '\LIB\LIB_COMMON']);
-%ResultDirHome = ['Z:/ENP/MODELS/Result/'];
-ResultDirHome = [INI.PATHDIR '\TEST_CASES'];
+A1 = 1 ;A2 = 1; A2a = 1; A3 = 1; A3a = 1; A3exp = 1; A4 = 1; A5 = 1; A6=1; A7=1;
+SELECTED_STATION_LIST = 'selected_station_list-MDR.txt';
+FILE_OBSERVED = 'DATA_OBSERVED20130519.MATLAB';
+STATION_DATA = 'monptsV14-11.xlsx';
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CHOOSE SIMULATIONS TO BE ANALYZED 
 % 1st cell: Results Directory, 2nd cell: simulation run, 3rd cell: legend entry
 i = 0; % initialize simulation countINI
@@ -49,15 +32,34 @@ i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'ALT000_BL', 'BL'};
 % i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'AGV9004BR200Q0300', 'Reservoir Discarge 300 cfs'};
 % i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'AGV9004BR200Q5000', 'Reservoir Discarge 500 cfs'};
 %i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'V8050ND', 'ND'};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+INI.SELECTED_STATION_LIST = [CURRENT_PATH 'DATA/' SELECTED_STATION_LIST]; 
+% The observed station data (gets loaded automatically?)
+INI.FILE_OBSERVED = [CURRENT_PATH 'DATA/' FILE_OBSERVED]; %  all selected stations
+INI.STATION_DATA   = [CURRENT_PATH 'DATA/' STATION_DATA]; 
+
+%user control 
+address = java.net.InetAddress.getLocalHost();
+
+% if (regexp(char(address), 'ENP-PC'))
+%     INI.PATHDIR     = 'N:/ENP/MODELS/';
+% else
+%     INI.PATHDIR     = 'N:/ENP/MODELS/';
+%     
+% end
+% 
+% INI.PATHDIR     = 'N:/ENP/MODELS/
+% 
+
+%hidden from the user%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+INI.PATHDIR = CURRENT_PATH;
+COMMON_DATA_PATH = [CURRENT_PATH 'DATA/'];
+LIBRARY_PATH = [CURRENT_PATH 'LIB/'];
+ 
+path(path,[INI.PATHDIR 'LIB/']);
 
 % STATIONS TO BE ANALYZED/EXTRACTED, the default is to check current dir for selected_station_list.txt
-INI.SELECTED_STATION_LIST = 'selected_station_list-MDR.txt'; 
-% The observed station data (gets loaded automatically?)
-INI.FILE_OBSERVED = 'DATA_OBSERVED20130519.MATLAB'; %  all selected stations
-
-%datadir = '/MATLAB/postproc/data/'
-%INI.STATION_DATA   = [datadir '/monptsV14-7.xlsx'];
-INI.STATION_DATA   = 'monptsV14-11.xlsx';
 % NOT SURE HOW THESE ARE IMPLEMENTED YET:
 INI.INCLUDE_OBSERVED      = 'YES'; % Include observed in the output figs and tables. Check if this switch works
 INI.COMPUTE_SENSITIVITES  = 'YES'; % Compute statistics and generate tables in Latex? Check if this switch works

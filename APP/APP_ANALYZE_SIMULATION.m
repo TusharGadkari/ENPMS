@@ -5,7 +5,7 @@ INI.ANALYSIS_TAG = 'PHASE3A_ALL';
 INI.ANALYZE_DATE_I = [1996 1 1 0 0 0];
 INI.ANALYZE_DATE_F = [2005 12 31 0 0 0];
 % CHOOSE WHICH MODULES TO RUN  1=yes, 0=no
-A1 = 0 ;A2 = 0; A2a = 0; A3 = 0; A3a = 1; A3exp = 1; A4 = 0; A5 = 0; A6=0; A7=0;
+A1 = 1 ;A2 = 1; A2a = 1; A3 = 1; A3a = 1; A3exp = 1; A4 = 1; A5 = 1; A6=1; A7=1;
 %A1=Load TS, A2=TS stat, A2a=Flows, A3=FIG TS, A3a=BOX PLOT, A4=PE FIG, A5=LATEX
 % SET MODELS DIRECTORY 
 address = java.net.InetAddress.getLocalHost();

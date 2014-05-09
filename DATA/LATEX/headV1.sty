@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}
+
+\usepackage[top=0.5in, bottom=0.8in, left=0.15in, right=0.15in]{geometry}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{wrapfig}
+\usepackage{caption}
+%This is used to activate clicking in the pdf
+\usepackage{graphicx}  % this is needed to eliminate runaway args from hyperref
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{verbatim} % added by keb 2011-10-12 for use on readme files
+\usepackage{subfigure}
+\hypersetup{
+  pdftitle={M3ENP output},
+  pdfauthor={\textcopyright\ SFNRC},
+  pdfdisplaydoctitle=true,
+  verbose,
+  hypertexnames=false,      % use guessable names for links, default true
+  bookmarksopenlevel=1,
+  bookmarksopen,
+  bookmarksnumbered,
+  colorlinks,
+  linkcolor={Mahogany},
+  citecolor={JungleGreen},
+  urlcolor={DarkOrchid},
+  %pdfstartview={XYZ null null 1.00},    % left, top, zoom
+  pdfstartview={Fit},  % ahhhh this is so much better than XYZ ;)
+  %linktocpage
+}
+
+\begin{document}
+
+\tableofcontents
+\listoffigures
+\captionsetup{labelformat=empty,labelsep=none}
+
+\clearpage   % added by keb 2011-10-12
