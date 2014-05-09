@@ -79,8 +79,12 @@ if ~exist(INI.FIGURES_DIR_MAPS,'file'), mkdir(INI.FIGURES_DIR_MAPS), end
 if ~exist(INI.LATEX_DIR,'file'),        mkdir(INI.LATEX_DIR);end;
 
 fprintf('DIRECTORIES: ?\n');
+fprintf('==========================\n');
 fprintf('INI.SCRIPTDIR is %s\n',INI.SCRIPTDIR);
 fprintf('INI.LATEX_DIR is %s\n',INI.LATEX_DIR);
+fprintf('INI.ANALYSIS_DIR is %s\n',INI.ANALYSIS_DIR);
+fprintf('INI.MATDIR is %s\n',INI.MATDIR);
+fprintf('==========================\n');
 % copyfile([INI.SCRIPTDIR '/latex/headV1.sty'],INI.LATEX_DIR );
 % copyfile([INI.SCRIPTDIR '/latex/tail.sty'], INI.LATEX_DIR );
 % copyfile([INI.SCRIPTDIR '/latex/blank.jpg'],INI.FIGURES_DIR );

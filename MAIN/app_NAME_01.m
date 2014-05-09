@@ -4,10 +4,10 @@ PATHDIR = which('ENPMS\MAIN\app_NAME_01.m','-all');
 PATHDIR = char(PATHDIR);
 INI.PATHDIR = fileparts(PATHDIR);
 
-cd ..
-ENPMS_PATHDIR = which('ENPMS\ENPMS_README.txt','-all');
-ENPMS_PATHDIR = char(ENPMS_PATHDIR)
-INI.ENPMS_PATHDIR = fileparts(ENPMS_PATHDIR)
+% cd ..
+% ENPMS_PATHDIR = which('ENPMS\ENPMS_README.txt','-all');
+% ENPMS_PATHDIR = char(ENPMS_PATHDIR)
+% INI.ENPMS_PATHDIR = fileparts(ENPMS_PATHDIR)
 
 cd(INI.PATHDIR) 
 
@@ -23,11 +23,13 @@ A1 = 0 ;A2 = 0; A2a = 0; A3 = 0; A3a = 1; A3exp = 1; A4 = 0; A5 = 0; A6=0; A7=0;
     address = java.net.InetAddress.getLocalHost();
     if (regexp(char(address), 'bme-3315-9368/131.94.116.23'))
         INI.PATHDIR     = 'C:\Users\tgadk001\Documents\GitHub\ENPMS\MAIN\TEST_CASES';
+    elseif (regexp(char(address), 'arc-2162cub-1fa9/131.94.113.205'))
+        INI.PATHDIR     = 'C:\Users\tushar\Documents\GitHub\ENPMS\MAIN\TEST_CASES';
     else
         INI.PATHDIR     = '~\GitHub\ENPMS\MAIN\TEST_CASES';
     end
-path(path,[INI.ENPMS_PATHDIR '\LIB']);
-path(path,[INI.ENPMS_PATHDIR '\LIB\LIB_COMMON']);
+% path(path,[INI.ENPMS_PATHDIR '\LIB']);
+% path(path,[INI.ENPMS_PATHDIR '\LIB\LIB_COMMON']);
 %ResultDirHome = ['Z:/ENP/MODELS/Result/'];
 ResultDirHome = [INI.PATHDIR '\TEST_CASES'];
 
