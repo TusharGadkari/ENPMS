@@ -1,10 +1,13 @@
 function  [INI] =  ANALYSIS_SIMULATION_TEMPLATE()
 % do not modify;
-CURRENT_PATH =[fileparts(char(pwd())) '/'];
+[INI.ROOT,NAME,EXT] = fileparts(pwd()); % path string of ROOT Directory/
+INI.ROOT = [INI.ROOT '/'];
+CURRENT_PATH =[char(pwd()) '/']; % path string of folder MAIN
+% end do not modify
 
 %set by user determine where to store the results from analysis
-ANALYSIS_PATH = 'C:\Users\ENP\Documents\GitHub\ENPMS\DATA_TESTING\TESTING_ANALYSIS\';
-ResultDirHome = ['C:\Users\ENP\Documents\GitHub\ENPMS\DATA_TESTING\TESTING_SOURCE_SIMULATIONS\'];
+INI.ANALYSIS_PATH = 'C:\Users\NYN\Documents\GitHub\ENPMS\DATA_TESTING\TESTING_ANALYSIS\';
+INI.ResultDirHome = 'C:\Users\NYN\Documents\GitHub\ENPMS\DATA_TESTING\TESTING_SOURCE_SIMULATIONS\';
 
 % CHOOSE TAG FOR THIS POSTPROC RUN
 INI.ANALYSIS_TAG = 'PHASE3A_ALL';
@@ -22,7 +25,7 @@ STATION_DATA = 'monptsV14-11.xlsx';
 i = 0; % initialize simulation countINI
 % i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'V8ND08b', 'V8ND08b'};
 % i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'V8ND020', 'V8ND020'};
-i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'ALT000_BL', 'BL'};
+i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {INI.ResultDirHome, 'ALT000_BL', 'BL'};
 % i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'ALT01P_BL_BNP25', 'BL BNP'};
 % i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'ALT02P_TT_BNP50', 'TT BNP'};
 % i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'ALT03P_FC_BNP50', 'FC BNP'};
@@ -34,10 +37,10 @@ i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'ALT000_BL', 'BL'};
 %i = i + 1;  INI.MODEL_SIMULATION_SET{i} = {ResultDirHome, 'V8050ND', 'ND'};
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-INI.SELECTED_STATION_LIST = [CURRENT_PATH 'DATA_CONFIGURATION/' SELECTED_STATION_LIST]; 
+INI.SELECTED_STATION_LIST = [INI.ROOT 'DATA_CONFIGURATION/' SELECTED_STATION_LIST]; 
 % The observed station data (gets loaded automatically?)
-INI.FILE_OBSERVED = [CURRENT_PATH 'DATA_OBSERVATIONS/' FILE_OBSERVED]; %  all selected stations
-INI.STATION_DATA   = [CURRENT_PATH 'DATA_OBSERVATIONS/' STATION_DATA]; 
+INI.FILE_OBSERVED = [INI.ROOT 'DATA_OBSERVATIONS/' FILE_OBSERVED]; %  all selected stations
+INI.STATION_DATA   = [INI.ROOT 'DATA_OBSERVATIONS/' STATION_DATA]; 
 
 %user control 
 address = java.net.InetAddress.getLocalHost();
@@ -53,11 +56,15 @@ address = java.net.InetAddress.getLocalHost();
 % 
 
 %hidden from the user%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-INI.PATHDIR = CURRENT_PATH;
-COMMON_DATA_PATH = [CURRENT_PATH 'DATA/'];
-LIBRARY_PATH = [CURRENT_PATH 'LIB/'];
- 
-path(path,[INI.PATHDIR 'LIB/']);
+
+
+% adds all paths within the root repository
+%recursively add local libraries and directories
+try
+   addpath(genpath(INI.ROOT)); 
+catch
+   addpath(genpath(INI.ROOT,0));
+end
 
 % STATIONS TO BE ANALYZED/EXTRACTED, the default is to check current dir for selected_station_list.txt
 % NOT SURE HOW THESE ARE IMPLEMENTED YET:

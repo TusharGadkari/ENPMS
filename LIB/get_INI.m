@@ -1,8 +1,5 @@
 function [INI] = get_INI(INI) 
 
-% INI.PATHDIR = pathdir;
-% INI.MATDIR = matdir;
-
 fprintf('... ANALYZING SIMULATIONS:\n');
 for i = 1:length(INI.MODEL_SIMULATION_SET)
     A = INI.MODEL_SIMULATION_SET{1,i}{1,1};
@@ -12,33 +9,11 @@ for i = 1:length(INI.MODEL_SIMULATION_SET)
     fprintf('SIMULATION: %s LEGEND: %s\n', B, C);
 end
 
+INI.PATHDIR = INI.ROOT;
 INI.MATDIR =  [INI.PATHDIR 'LIB/'];
 INI.SCRIPTDIR   = [INI.PATHDIR 'DATA_LATEX/'];
 INI.DATADIR = [INI.PATHDIR 'DATA_OBSERVATIONS/'];
 
-path(path,[INI.MATDIR 'LIB_COMMON/']);
-% path(path,[INI.MATDIR 'postproc/LIB']);
-% path(path,INI.SCRIPTDIR);
-% path(path,[INI.SCRIPTDIR,'util']);
-% path(path,[INI.SCRIPTDIR,'latex']);
-
-% INI.INCLUDE_OBSERVED, 
-% INI.COMPUTE_SENSITIVITES, 
-% INI.MAKE_STATISTICS_TABLE, 
-% INI.MAKE_EXCEEDANCE_PLOTS, 
-% INI.MODEL_SIMULATION_SET, 
-% INI.ANALYSIS_TAG;
-% INI.ANALYZE_DATE_I, 
-% INI.ANALYZE_DATE_F, 
-% INI.SELECTED_STATION_LIST, 
-% INI.LOAD_MOLUZ, 
-% INI.LOAD_M11, 
-% INI.LOAD_MSHE, 
-% INI.LOAD_OL, 
-% INI.LOAD_3DSZ, 
-% INI.LOAD_3DSZQ, 
-% INI.FILE_OBSERVED, 
-% INI.STATION_DATA, 
 INI.MAPXLS = readXLSmonpts(0,INI);
 INI.CELL_DEF_FILE_DIR         = INI.DATADIR;
 INI.CELL_DEF_FILE_SHEETNAME   = ['data'];
@@ -46,11 +21,8 @@ INI.CELL_DEF_FILE_NAME_OL    = {'cells2load-OL'};
 INI.CELL_DEF_FILE_NAME_3DSZQ = {'cells2load-3DSZQ'};
 INI.CELL_DEF_FILE_NAME_3DSZ  = {'cells2load-3DSZ'};
 
-% get current directory:
-% INI.ANALYSIS_DIR     = [INI.PATHDIR 'REPORTS/DATAPOST/output']; % analysis directory
-CURRENT_DIR = eval('pwd');
-[PATH,NAME,EXT] = fileparts(CURRENT_DIR);
-INI.ANALYSIS_DIR = [PATH '\' NAME];
+% Directory to store all analyses
+INI.ANALYSIS_DIR = INI.ANALYSIS_PATH;
 fprintf('Current directory, all analysis will be stored in: %s\n\n',INI.ANALYSIS_DIR);
 INI.ANALYSIS_DIR_TAG = [INI.ANALYSIS_DIR '/' INI.ANALYSIS_TAG];  % postproc directory for postproc run (no edits needed here)
 INI.DATA_DIR         = [INI.ANALYSIS_DIR_TAG '/data'];  % data dir in output for extracted matlab files
@@ -78,7 +50,7 @@ if ~exist(INI.FIGURES_DIR_MAPS,'file'), mkdir(INI.FIGURES_DIR_MAPS), end
 % Set up LaTeX directory and supporting files
 if ~exist(INI.LATEX_DIR,'file'),        mkdir(INI.LATEX_DIR);end;
 
-fprintf('DIRECTORIES: ?\n');
+fprintf('DIRECTORIES FOR STORING ANALYSIS:?\n');
 fprintf('==========================\n');
 fprintf('INI.SCRIPTDIR is %s\n',INI.SCRIPTDIR);
 fprintf('INI.LATEX_DIR is %s\n',INI.LATEX_DIR);
@@ -96,8 +68,8 @@ fprintf('==========================\n');
 % copyfile([INI.SCRIPTDIR '/latex/figs-station_groups/DCanalNetworkStationGroup.png'],INI.FIGURES_DIR_MAPS );
 
 % INI.SELECTED_STATION_LIST = [INI.ANALYSIS_DIR '/' INI.SELECTED_STATION_LIST];
-INI.FILE_OBSERVED = [INI.ANALYSIS_DIR '/' INI.FILE_OBSERVED]; %  all selected stations
-INI.STATION_DATA  = [INI.STATION_DATA INI.STATION_DATA];
+% INI.FILE_OBSERVED = [INI.ANALYSIS_DIR '/' INI.FILE_OBSERVED]; %  all selected stations
+% INI.STATION_DATA  = [INI.STATION_DATA INI.STATION_DATA];
 
 INI.NSIMULATIONS = length(INI.MODEL_SIMULATION_SET);
 for i = 1:INI.NSIMULATIONS

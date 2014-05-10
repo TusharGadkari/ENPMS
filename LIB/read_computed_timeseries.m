@@ -194,7 +194,7 @@ for i=1:num_stns
       if strcmp(UNIT,'meter'), D = D/FT2M;   UNIT = 'feet';   end;
       
       % extract daily values
-      D_DAILY = get_daily_data_v1(D,DfsTimeVector,num_dfs_days);
+      D_DAILY = get_daily_data(D,DfsTimeVector,num_dfs_days);
       
       % save info in DATA_COMPUTED structure
       DATA_COMPUTED(i).TIMESERIES = D_DAILY;

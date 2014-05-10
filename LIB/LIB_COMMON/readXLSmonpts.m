@@ -4,28 +4,6 @@ function [MAP_ALL] = readXLSmonpts(MAKETEXTFILE,INI)
 %  for use in creating dfso from txt files
 %  return the MAPs in a structure
 
-%TODO:
-
-%%%%%%%%%%%
-    %add search path
-% address = java.net.InetAddress.getLocalHost();
-% if (regexp(char(address), 'ENP-PC'))
-%     pathdir     = 'C:/MODELS/DHIMODEL/';
-%     matdir =  'C:/MODELS/MATLAB/';
-%     path(path,[matdir 'mbin']);
-%     %path(path,[matdir 'HOBS/common']);
-%     %workdir = [matdir 'HOBS/'];
-%     path(path,[matdir 'scripts/common']);
-%     %outdir = [matdir 'postproc/data/'];
-%     %path(path,workdir);
-% else
-%     pathdir     = 'F:/MODELS/DHIMODEL/';
-%     matdir =  'F:/MODELS/MATLAB/';
-%     path(path, 'F:/APPS/DHI_2011/MATLAB/mbin');
-%     path(path,[matdir 'scripts/common']);
-%     %outdir = [matdir 'postproc/data/'];
-% end
-
 % if (~exist('xlsfile','var')), disp('Input a xls file'), return; end;
 % xlfile2 = [matdir 'postproc/data/' xlsfile];
 xlfile2 =  INI.STATION_DATA;

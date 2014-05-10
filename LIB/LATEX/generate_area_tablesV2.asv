@@ -1,0 +1,113 @@
+function [output_arg] = generate_area_tablesV2(AREA,MAP_STATION_STAT,LIST_STATIONS,FFF,F,SIM,fidTEX)
+%rjf; from generate_latex_areasV0
+
+i = 1;                 
+for L = LIST_STATIONS
+     try
+        M = MAP_STATION_STAT(char(L))
+        sz = length(M.PE(:,1));
+        C(i:i+sz-1) = M.MODELRUN(1:sz);
+        N(i:i+sz-1) = L;
+        NDATA(i:i+sz-1,1:9) = M.STAT;
+        PE(i:i+sz-1,1:9) = M.PE(1:sz,1:9);
+        i = i+sz;
+     catch
+         disp(L);
+         %rjf; ERROR this is a hack to avoid PE=NaN and undefined NDATA
+        M = MAP_STATION_STAT(char(L))
+        sz = length(M.PE(:,1));
+         NDATA(i:i+sz-1,1:9) = 0;
+         PE(i:i+sz-1,1:9) = 0;
+     end
+end
+
+for i = 1:length(SIM.MODEL_ALL_RUNS)
+    MAP_KEY(i) = SIM.MODEL_ALL_RUNS(i);
+    MAP_VALUE(i) = SIM.MODEL_RUN_DESC(i);
+end
+MAP_DESCR = containers.Map(MAP_KEY, MAP_VALUE);
+
+        fprintf(fidTEX,'%s\n','\clearpage');
+
+row2 =['\clearpage\subsection{STATS}'];
+fprintf(fidTEX,'%s\n\n',row2);
+
+
+print_table_stat_headerV0(fidTEX,AREA,F);
+STEND = '\\';
+N_TMP = '';
+
+for i = 1:length(C)
+    if NDATA(i,1)
+        D = MAP_DESCR(char(C(i)));
+        if ~strcmp(N(i),N_TMP)
+            RN = strrep(N(i), '_', '\_');
+            NTEX=['\textbf{' char(RN) '}'];
+            N_TMP = N(i);
+            if i > 1
+                STEND =  '\\\\ \pagebreak[3] ';
+            end
+        else
+            NTEX = '';
+            STEND =  '\\\nopagebreak';
+        end
+        fprintf(fidTEX,'%s\n',STEND);
+        fprintf(fidTEX,'%10s & %20s & %8d & %8.2f & %8.2f & %8.2f & %8.2f & %8.2f & %8.2f & %8.2f & %8.2f',NTEX,char(D),NDATA(i,:));
+    end
+end
+fprintf(fidTEX,'%s\n','\\')';
+
+ROW0 = ['\end{longtable}'];
+fprintf(fidTEX,'%s\n',ROW0);
+ROW1 = ['\end{center}'];
+fprintf(fidTEX,'%s\n',ROW1);
+ROW2 = ['\normalsize'];
+fprintf(fidTEX,'%s\n',ROW2);
+ROW3 = ['\renewcommand{\thefootnote}{\arabic{footnote}}'];
+fprintf(fidTEX,'%s\n',ROW3);
+
+        fprintf(fidTEX,'%s\n','\clearpage');
+
+
+row2 =['\subsection{MO stats}'];
+fprintf(fidTEX,'%s\n\n',row2);
+
+print_table_PE_headerV0(fidTEX,AREA,F);
+STEND = '\\';
+N_TMP = '';
+for i = 1:length(C)
+    if ~isnan(PE(i,:))
+        D = MAP_DESCR(char(C(i)));
+        if ~strcmp(N(i),N_TMP)
+            RN = strrep(N(i), '_', '\_');
+            NTEX=['\textbf{' char(RN) '}'];
+            N_TMP = N(i);
+            if i > 1
+                STEND =  '\\\\ \pagebreak[3] '; %STEND =  '\\\\'
+            end
+        else
+            NTEX = '';
+            STEND =  '\\\nopagebreak'; %STEND =  '\\'
+        end
+        D = MAP_DESCR(char(C(i)));
+        fprintf(fidTEX,'%s\n',STEND);
+        fprintf(fidTEX,'%10s & %20s & %8.2f & %8.2f & %8.2f & %8.2f & %8.2f & %8.2f & %8.2f & %8.2f & %8.2f',NTEX,char(D),PE(i,:));
+    end
+end
+fprintf(fidTEX,'%s\n','\\');
+
+
+
+ROW0 = ['\end{longtable}'];
+fprintf(fidTEX,'%s\n',ROW0);
+ROW1 = ['\end{center}'];
+fprintf(fidTEX,'%s\n',ROW1);
+ROW2 = ['\normalsize'];
+fprintf(fidTEX,'%s\n',ROW2);
+ROW3 = ['\renewcommand{\thefootnote}{\arabic{footnote}}'];
+fprintf(fidTEX,'%s\n',ROW3);
+
+        fprintf(fidTEX,'%s\n','\clearpage');
+
+end
+

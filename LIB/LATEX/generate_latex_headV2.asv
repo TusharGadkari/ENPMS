@@ -1,0 +1,27 @@
+function [fidTEX] = generate_latex_headV2( SIM)
+
+
+FFF_TEX = [SIM.LATEX_DIR '\' SIM.ANALYSIS_TAG '.tex'];
+fidTEX = fopen(FFF_TEX,'w');
+
+row0 = ['\input{head.sty}'];
+row1 =['\section{' SIM.SELECTED_STATIONS.header '}'];
+
+fprintf(fidTEX,'%s\n\n',row0);
+fprintf(fidTEX,'%s\n\n',row1);
+
+% include the readme file
+for i = 1:SIM.NSIMULATIONS
+    rowt = ['Simulation run readme: ' SIM.MODEL_SIMULATION_SET{i}{3} '\n'];
+    [path,name.ext,versn] = fileparts(SIM.MODEL_SIMULATION_SET{i}{1});
+    copyfile([path '\readme.txt'], SIM.LATEX_DIR );
+    movefile ([SIM.LATEX_DIR  '\readme.txt'],[SIM.LATEX_DIR '\' SIM.MODEL_SIMULATION_SET{i}{3} '-readme.txt']);
+    readmefile = ['.\' SIM.MODEL_SIMULATION_SET{i}{3} '-readme.txt'];
+    rowi = ['\input{' readmefile '}\n\n'];
+    fprintf(fidTEX,'%s\n',rowt);
+    fprintf(fidTEX,'%s\n\n',rowi);
+end
+
+
+end
+
