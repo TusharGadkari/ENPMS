@@ -8,6 +8,8 @@ CURRENT_PATH =[char(pwd()) '/']; % path string of folder MAIN
 %set by user determine where to store the results from analysis
 INI.ANALYSIS_PATH = 'C:\Users\NYN\Documents\GitHub\ENPMS\DATA_TESTING\TESTING_ANALYSIS\';
 INI.ResultDirHome = 'C:\Users\NYN\Documents\GitHub\ENPMS\DATA_TESTING\TESTING_SOURCE_SIMULATIONS\';
+INI.ANALYSIS_PATH = '../DATA_TESTING\TESTING_ANALYSIS/';
+INI.ResultDirHome = '../DATA_TESTING\TESTING_SOURCE_SIMULATIONS/';
 
 % CHOOSE TAG FOR THIS POSTPROC RUN
 INI.ANALYSIS_TAG = 'PHASE3A_ALL';
