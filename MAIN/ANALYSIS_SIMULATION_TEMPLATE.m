@@ -45,7 +45,7 @@ INI.FILE_OBSERVED = [INI.ROOT 'DATA_OBSERVATIONS/' FILE_OBSERVED]; %  all select
 INI.STATION_DATA   = [INI.ROOT 'DATA_OBSERVATIONS/' STATION_DATA]; 
 
 %user control 
-address = java.net.InetAddress.getLocalHost();
+address = java.net.InetAddress.getLocalHost();   
 % if (regexp(char(address), 'ENP-PC'))
 %     INI.PATHDIR     = 'N:/ENP/MODELS/';
 % else
